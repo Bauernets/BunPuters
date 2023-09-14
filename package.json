@@ -1,0 +1,11 @@
+{
+    "name": "quickstart",
+    "module": "index.ts",
+    "type": "module",
+    "scripts": {
+      "start": "bun run index.jsx"
+    },
+    "devDependencies": {
+      "bun-types": "^0.7.0"
+    }
+}
