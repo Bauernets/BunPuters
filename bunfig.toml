@@ -1,0 +1,13 @@
+#react, react-jsx or react-jsxdev
+jsx = "react-jsxdev" 
+
+loglevel = "debug"
+
+# performance
+smol = true
+
+[define]
+"process.env.name": "value"
+
+[test]
+preload = ["./test.js"]

@@ -5,7 +5,7 @@ curl -fsSL https://bun.sh/install | bash
 bun upgrade
 
 # Main
-bun run start -> bun run index.jsx 
+bun run serve -> bun run index.jsx 
 
 ## XTRAS
 bun test                      # run tests
