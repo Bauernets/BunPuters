@@ -1,16 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { renderToReadableStream } from "react-dom/server";
 import { Elysia } from 'elysia'
 
-const indexhtml = <html>
-    <head>
-        <title>React</title>
-    </head>
-    <body>
-        <div id="root"></div>
-        <script src="bundle.js"></script>
-    </body>
-</html>
+function TimeC(props) {
+    return (
+        <div>
+            <h1>Hello, world!</h1>
+            <p>Current time is: {props.time}</p>
+        </div>
+    );
+}
 
 function startupLua(path = "./lua/turtle.lua") {
     const file = Bun.file(path);
@@ -20,7 +19,12 @@ const startupResp = startupLua();
 
 const app = new Elysia()
     .get("/", async (req) => {
-        return new Response(indexhtml, { headers: { "Content-Type": "text/html" } });
+        const stream = await renderToReadableStream(<TimeC time={new Date().toString()} />);
+        return new Response(stream, {
+            headers: {
+                "Content-Type": "text/html",
+            },
+        });
     })
     .get("/startup", async (req) => {
         return startupResp;
