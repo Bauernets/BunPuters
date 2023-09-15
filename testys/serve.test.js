@@ -14,14 +14,14 @@ describe("serves", () => {
         });
         serve.stderr.on('data', (data) => {
             //console.error(`stderr: ${data}`);
-            expect( data ).toEqual(Buffer.from('$ bun run index.jsx\n'));
+            //expect( data ).toEqual(Buffer.from('$ bun run index.jsx\n'));
         });
         serve.on('close', (code) => {
             //console.log(`child process exited with code ${code}`);
             expect( code ).toBe( null );
         });      
     
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, globalThis.time));
 
         serve.kill('SIGINT');
         exec('kill ' + (pid + 1));

@@ -1,9 +1,10 @@
 import { beforeEach } from "bun:test";
 
 globalThis.url = "localhost:3000";
+globalThis.time = 300;
 
 beforeEach(() => {
-    console.log('TEST PRELOAD');
+    //console.log('TEST PRELOAD');
 });
 //spawns the server to test against
 // const { exec } = require('child_process');

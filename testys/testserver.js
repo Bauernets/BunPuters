@@ -1,12 +1,13 @@
 
 export default class TestServerF {
-    constructor() {
+    constructor(verbose = false) {
+        this._verbose = verbose;
         this._server = null;
         this._pid = null;
     }
 
     start() {
-        console.log('testserver starting...');
+        if (this._verbos) { console.log('testserver starting...') };
         const { spawn } = require('child_process');
 
         this._server = spawn('bun', ['run', 'serve']);
@@ -22,7 +23,7 @@ export default class TestServerF {
 
         this._server.kill('SIGINT');
         exec('kill ' + (this._pid + 1));
-        console.log('testserver done.');
+        if (this._verbose) { console.log('testserver done.') };
     }
 
     //these are ovveridable for testing
