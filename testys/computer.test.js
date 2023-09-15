@@ -3,8 +3,8 @@ import TestServerF from "./testserver";
 
 const time = 1000; 
 
-describe("get", () => {
-    test( "get " + globalThis.url, async () => {
+describe("turtle", () => {
+    test( "turtle get " + globalThis.url, async () => {
         const server = new TestServerF();
         server.start();
         
