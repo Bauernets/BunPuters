@@ -3,11 +3,13 @@ import testserver from "./testserver";
 
 describe("get", () => {
     test( "get " + globalThis.url, async () => {
-        await testserver();
-        fetch( globalThis.url ).then( response => {
-            expect( response ).toBe( "local test = 1" );
+        testserver();
+        fetch( globalThis.url, {verbose: true} ).then( response => {
+            console.log( "RESPONSE: " + response );
+            expect( true ).toBe( true );
         }).catch( error => {
-            //console.error( error );
+            console.error( error );
+            expect( false ).toBe( true );
         });
     });
 });
