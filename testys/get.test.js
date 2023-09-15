@@ -4,18 +4,20 @@ import TestServerF from "./testserver";
 const time = 1000;
 
 describe("get", () => {
-    test( "get " + globalThis.url, () => {
+    test( "get " + globalThis.url, async () => {
         const server = new TestServerF();
         server.start();
         
-        fetch( globalThis.url, {verbose: true} ).then( response => {
-            console.log( "RESPONSE: " + response );
-            expect( true ).toBe( true );
+        const response = fetch( globalThis.url, {verbose: false} )
+
+        await new Promise(resolve => setTimeout(resolve, time/2));
+
+        await response.then( response => {
+            expect( response.status ).toBe( 200 );
         }).catch( error => {
-            console.error( error );
             expect( false ).toBe( true );
         });
-        
+
         server.stop();
     });
 }, time);

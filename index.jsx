@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import { Elysia } from 'elysia'
 
 const indexhtml = <html>
     <head>
@@ -16,12 +18,38 @@ function startupLua(path = "./lua/turtle.lua") {
 }
 const startupResp = startupLua();
 
-const server = Bun.serve({
-    port: 3000,
-    async fetch(req) {
-        return new Response(startupResp);
-    },
-});
+const app = new Elysia()
+    .get("/", async (req) => {
+        return new Response(indexhtml, { headers: { "Content-Type": "text/html" } });
+    })
+    .get("/startup", async (req) => {
+        return startupResp;
+    })
+    .listen(3000)
 
-console.log(`Listening on http://localhost:${server.port} ...`);
+
+// const server = Bun.serve({
+//     port: 3000,
+//     async fetch(req) {
+//         return new Response(startupResp);
+//     },
+// });
+// const server = Bun.serve < { authToken: string } > ({
+//     fetch(req, server) {
+//         const success = server.upgrade(req);
+//         if (success) {
+//             // Bun automatically returns a 101 Switching Protocols
+//             // if the upgrade succeeds
+//             return undefined;
+//         }
+
+//         // handle HTTP request normally
+//         return new Response("Hello world!");
+//     },
+//     websocket: {
+//         // define websocket handlers
+//     },
+// });
+
+console.log(`Listening on http://localhost:${app.server.port} ...`);
 
