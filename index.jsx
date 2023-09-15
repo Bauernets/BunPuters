@@ -1,3 +1,5 @@
+import React from "react";
+
 const indexhtml = <html>
     <head>
         <title>React</title>
@@ -8,10 +10,16 @@ const indexhtml = <html>
     </body>
 </html>
 
+function startupLua(path = "./lua/turtle.lua") {
+    const file = Bun.file(path);
+    return new Response(file);
+}
+const startupResp = startupLua();
+
 const server = Bun.serve({
     port: 3000,
-    fetch(req) {
-        return new Response("Bun!");
+    async fetch(req) {
+        return new Response(startupResp);
     },
 });
 

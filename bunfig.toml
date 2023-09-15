@@ -1,5 +1,5 @@
-#react, react-jsx or react-jsxdev
-jsx = "react-jsxdev" 
+#react, react-jsx or react-jsxDEV
+jsx = "react" 
 
 loglevel = "debug"
 
@@ -10,4 +10,4 @@ smol = true
 "process.env.name": "value"
 
 [test]
-preload = ["./test.js"]
+preload = ["./setup.js"]

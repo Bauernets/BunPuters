@@ -1,11 +1,14 @@
 {
-    "name": "quickstart",
-    "module": "index.ts",
-    "type": "module",
-    "scripts": {
-      "serve": "bun run index.jsx"
-    },
-    "devDependencies": {
-      "bun-types": "^0.7.0"
-    }
+  "name": "quickstart",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "serve": "bun run index.jsx"
+  },
+  "devDependencies": {
+    "bun-types": "^0.7.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  }
 }
