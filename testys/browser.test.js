@@ -14,7 +14,8 @@ describe("browser", () => {
         await response.then( response => {
             expect( response.status ).toBe( 200 );
         }).catch( error => {
-            expect( false ).toBe( true );
+            //console.log( error );
+            expect( error ).toBe( null );
         });
 
         server.stop();

@@ -2,14 +2,7 @@ import React from "react";
 import { renderToReadableStream } from "react-dom/server";
 import { Elysia } from 'elysia'
 
-function TimeC(props) {
-    return (
-        <div>
-            <h1>Hello, world!</h1>
-            <p>Current time is: {props.time}</p>
-        </div>
-    );
-}
+import Time from "./components/time.jsx";
 
 function startupLua(path = "./lua/turtle.lua") {
     const file = Bun.file(path);
@@ -20,7 +13,7 @@ const startupResp = startupLua();
 const app = new Elysia()
     .get("/", async (req) => {
         console.log('request')
-        const stream = await renderToReadableStream(<TimeC time={new Date().toString()} />);
+        const stream = await renderToReadableStream(<Time time={new Date().toString()} />);
         return new Response(stream, {
             headers: {
                 "Content-Type": "text/html",
