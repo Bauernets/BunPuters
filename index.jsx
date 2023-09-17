@@ -19,6 +19,7 @@ const startupResp = startupLua();
 
 const app = new Elysia()
     .get("/", async (req) => {
+        console.log('request')
         const stream = await renderToReadableStream(<TimeC time={new Date().toString()} />);
         return new Response(stream, {
             headers: {
@@ -27,6 +28,7 @@ const app = new Elysia()
         });
     })
     .get("/startup", async (req) => {
+        console.log('startup request')
         return startupResp;
     })
     .listen(3000)

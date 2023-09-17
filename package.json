@@ -3,7 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "serve": "bun run index.jsx"
+    "serve": "bun run index.jsx",
+    "build": "docker build --tag=computerbun .",
+    "dock": "docker run --rm --init --ulimit memlock=-1:-1 -p 3000:3000 computerbun"
   },
   "devDependencies": {
     "bun-types": "^0.7.0"
