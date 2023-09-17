@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "bun run index.jsx",
     "build": "docker build --tag=computerbun .",
-    "dock": "docker run --rm --init --ulimit memlock=-1:-1 -p 3000:3000 computerbun"
+    "dock": "docker run --rm --init --ulimit memlock=-1:-1 -p 3000:3000 computerbun",
+    "deploy": "./deploy.sh"
   },
   "devDependencies": {
     "bun-types": "^0.7.0"
