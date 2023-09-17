@@ -8,21 +8,26 @@
 
 # Main
 Running locally...
+
     bun run serve             -> bun run index.jsx 
 Docking...
+
     bun run build             -> docker build --tag=computerbun .
     
     bun run dock              -> docker run --rm --init --ulimit memlock=-1:-1 -p 3000:300 computerbun
 
-# ToDo Lisy
+# ToDo List
     bun test --todo
 
 ## XTRAS
 test your code 😡 !!!
+
     bun test                      # run tests
     bun test --watch             # run tests with rerun on file changes
     bun run serve                 # run the `serve` script in `package.json`
+
 more bun commands...
+
     bun install <pkg>​             # install a package
     bunx cowsay 'Hello, world!'   # execute a package
 
@@ -38,6 +43,7 @@ more bun commands...
     docker build --tag=computerbun .
     docker run --rm --init --ulimit memlock=-1:-1 -p 3000:3000 computerbun
 ref...
+
     docker pull oven/bun
     docker run --rm --init --ulimit memlock=-1:-1 oven/bun
 
