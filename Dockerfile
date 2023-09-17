@@ -1,4 +1,3 @@
-
 FROM oven/bun:latest
 COPY . .
 EXPOSE 3000
