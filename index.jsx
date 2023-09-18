@@ -3,7 +3,7 @@ import { renderToReadableStream } from "react-dom/server";
 import { Elysia } from 'elysia'
 
 import Time from "./components/time.jsx";
-
+import Button from "./components/button.jsx";
 function startupLua(path = "./lua/turtle.lua") {
     const file = Bun.file(path);
     return new Response(file);
@@ -13,7 +13,13 @@ const startupResp = startupLua();
 const app = new Elysia()
     .get("/", async (req) => {
         console.log('request')
-        const stream = await renderToReadableStream(<Time time={new Date().toString()} />);
+        const stream = await renderToReadableStream(
+        <div>
+            <Time time={new Date().toString()} />
+            <Button onClick="" text="button 1"></Button>
+        </div>
+
+        );
         return new Response(stream, {
             headers: {
                 "Content-Type": "text/html",
