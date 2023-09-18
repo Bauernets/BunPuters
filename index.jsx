@@ -4,11 +4,6 @@ import { Elysia } from 'elysia'
 
 import Time from "./components/time.jsx";
 import Button from "./components/button.jsx";
-function startupLua(path = "./lua/turtle.lua") {
-    const file = Bun.file(path);
-    return new Response(file);
-}
-const startupResp = startupLua();
 
 const app = new Elysia()
     .get("/", async (req) => {
@@ -28,7 +23,19 @@ const app = new Elysia()
     })
     .get("/startup", async (req) => {
         console.log('startup request')
-        return startupResp;
+        //import startupResp from './components/startup.js' and return default();
+        import('./components/startupResp.js').then((module) => {
+            console.log(module.default())
+            return module.default();
+        })
+    })
+    .get("/g", async (req) => {
+        console.log('g request')
+        return gResp;
+    })
+    .get("/stat", async (req) => {
+        console.log('stat request')
+        return statResp;
     })
     .listen(3000)
 
