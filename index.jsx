@@ -9,11 +9,18 @@ const app = new Elysia()
     .get("/", async (req) => {
         console.log('request')
         const stream = await renderToReadableStream(
-        <div>
-            <Time time={new Date().toString()} />
-            <Button onClick="" text="button 1"></Button>
-        </div>
-
+            <html>
+                <head>
+                <link rel="stylesheet" href="style.css"></link>
+                <link rel="stylesheet" href="button.css"></link>
+                </head>
+                <body>
+                <div className='bg'>
+                        <Time time={new Date().toString()} />
+                        <Button onClick="" text="button 1"></Button>
+                   </div>
+                </body>
+            </html>
         );
         return new Response(stream, {
             headers: {
@@ -21,21 +28,41 @@ const app = new Elysia()
             },
         });
     })
+    .get("/style.css", async (req) => {
+        console.log('style request')
+        return import('./components/styleResp.js').then((module) => {
+            //console.log(module.default())
+            return module.default();
+        });
+    })
+    .get("/button.css", async (req) => {
+        console.log('btn request')
+        return import('./components/buttonResp.js').then((module) => {
+            console.log(module.default())
+            return module.default();
+        });
+    })
     .get("/startup", async (req) => {
         console.log('startup request')
         //import startupResp from './components/startup.js' and return default();
-        import('./components/startupResp.js').then((module) => {
-            console.log(module.default())
+        return import('./components/startupResp.js').then((module) => {
+            //console.log(module.default())
             return module.default();
         })
     })
     .get("/g", async (req) => {
         console.log('g request')
-        return gResp;
+        return import('./components/gResp.js').then((module) => {
+            //console.log(module.default())
+            return module.default();
+        })
     })
     .get("/stat", async (req) => {
         console.log('stat request')
-        return statResp;
+        return import('./components/statResp.js').then((module) => {
+            //console.log(module.default())
+            return module.default();
+        })
     })
     .listen(3000)
 

@@ -1,0 +1,7 @@
+.bg {
+    background-image: url("https://www.w3schools.com/css/img_fjords.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
